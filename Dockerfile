@@ -8,6 +8,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 # Install dependencies
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN python -m pip install --upgrade pip setuptools wheel && \
+    pip install -r requirements.txt
 # Copy project
 COPY . .

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "allauth", # new
     "allauth.account", # new
+    "debug_toolbar", # new
     #local
     "accounts.apps.AccountsConfig",
     "pages.apps.PagesConfig",
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware", # new
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -163,3 +165,9 @@ ACCOUNT_EMAIL_REQUIRED = True # new
 ACCOUNT_UNIQUE_EMAIL = True # new
 
 DEFAULT_FROM_EMAIL = "admin@djangobookstore.com" # new
+
+
+# django-debug-toolbar
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]

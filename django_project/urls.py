@@ -26,3 +26,10 @@ urlpatterns = [
     path("books/", include("books.urls")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # new
+
+if settings.DEBUG:
+    import debug_toolbar # new
+    urlpatterns = [ # new   
+    path("__debug__/", include(debug_toolbar.urls)), # new
+    ] + urlpatterns
+

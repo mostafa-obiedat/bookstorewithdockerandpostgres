@@ -53,9 +53,14 @@ INSTALLED_APPS = [
     "books.apps.BooksConfig",
 ]
 
+CACHE_MIDDLWARE_ALIAS = "default"
+CACHE_MIDDLWARE_SECONDS = 604800
+CACHE_MIDDLWARE_KEY_PREFIX = ""
+
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 MIDDLEWARE = [
+    "django.middleware.cache.UpdateCacheMiddleware", # new
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -65,6 +70,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware", # new
+    "django.middleware.cache.FetchFromCacheMiddleware", # new
 ]
 
 ROOT_URLCONF = "django_project.urls"
